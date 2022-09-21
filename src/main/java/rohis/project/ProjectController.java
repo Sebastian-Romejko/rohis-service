@@ -13,17 +13,17 @@ public class ProjectController {
     private ProjectService projectService;
 
     @GetMapping(value = "/all")
-    public List<Project> GetAll() {
+    public List<Project> getAll() {
         return projectService.getAll();
     }
 
     @GetMapping(value = "/{projectId}")
-    public Project GetProject(@PathVariable Long projectId) {
+    public Project getProject(@PathVariable Long projectId) {
         return projectService.getById(projectId);
     }
 
     @PostMapping(value = "/add")
-    public void AddProject(@RequestBody ProjectDTO projectDTO) {
+    public void addProject(@RequestBody ProjectDTO projectDTO) {
         Project project = new Project();
         project.setID((long) 1);
         project.setName(projectDTO.getName());
@@ -33,12 +33,12 @@ public class ProjectController {
     }
 
     @GetMapping(value = "/delete/{projectId}")
-    public void DeleteProject(@PathVariable Long projectId) {
+    public void deleteProject(@PathVariable Long projectId) {
         projectService.removeProject(projectService.getById(projectId));
     }
 
     @PostMapping(value = "/modify/{projectId}")
-    public void ModifyProject(@PathVariable Long projectId, @RequestBody Project project) {
+    public void modifyProject(@PathVariable Long projectId, @RequestBody Project project) {
         projectService.modifyProject(projectId, project);
     }
 }
